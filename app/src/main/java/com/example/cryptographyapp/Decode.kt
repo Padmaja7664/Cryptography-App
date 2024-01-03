@@ -23,34 +23,34 @@ class Decode {
 
     companion object {
         fun decode(s: String): String {
+            // Define a constant for an invalid code
             val invalid = "Invalid Code"
 
             // create the same initial
             // string as in encode class
             val ini = "11111111"
-            var flag = true
+            var flag = true   // A flag to check if the initial value matches
 
-            // run a loop of size 8
+            // Check if the initial value is the same as the encoded string
             for (i in 0 until 8) {
-                // check if the initial value is the same
                 if (ini[i] != s[i]) {
                     flag = false
                     break
                 }
             }
-            var `val` = ""
+            var `val` = ""   // Variable to store the reversed encrypted code
 
-            // reverse the encrypted code
+            // Reverse the encrypted code and store it in the `val` variable
             for (i in 8 until s.length) {
                 `val` += s[i]
             }
 
-            // create a 2 dimensional array
+            // Create a 2-dimensional array with dimensions 11101 x 8
             val arr = Array(11101) { IntArray(8) }
-            var ind1 = -1
-            var ind2 = 0
+            var ind1 = -1   // Indices for the first dimension of the array
+            var ind2 = 0   // Indices for the second dimension of the array
 
-            // run a loop of size of the encrypted code
+             // Populate the 2D array with values from the reversed encrypted code
             for (i in `val`.indices) {
 
                 // check if the position of the
@@ -71,9 +71,9 @@ class Decode {
                     ind2++
                 }
             }
-            // create an array
+            // create an array to store decimal values
             val num = IntArray(11111)
-            var nind = 0
+            var nind = 0   // Index for the decimal values array
             var tem: Int
             var cu: Int
             // run a loop of size of the column
@@ -89,8 +89,9 @@ class Decode {
                 }
                 num[nind++] = tem
             }
-            var ret = ""
+            var ret = ""   // Variable to store the final decrypted string
             var ch: Char
+            
             // convert the decimal ASCII number to its
             // char value and add them to form a decrypted
             // string using concatenation function
